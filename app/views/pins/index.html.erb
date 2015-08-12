@@ -1,3 +1,4 @@
+<%= render 'pages/home' unless user_signed_in? %>
 <div id="pins" class="transitions-enabled">
   <p id="notice"><%= notice %></p>
   <% @pins.each do |pin| %>
@@ -8,7 +9,7 @@
         <p><strong><%= pin.user.try(:email) %></strong></p>
           <% if pin.user == current_user %>
           <div class="actions">  
-            <%= link_to edit_pin_path do %>
+            <%= link_to edit_pin_path(pin) do %>
               <span class="glyphicon glyphicon-edit"></span>
             <% end %>
             <%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
